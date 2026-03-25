@@ -1,0 +1,2581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nemco Carpenter Inc — Crafted in Wood, Built to Last</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --oak: #8B6343;
+    --oak-dark: #5C3D1E;
+    --oak-light: #C49A6C;
+    --walnut: #2C1A0E;
+    --pine: #E8D5B0;
+    --pine-light: #F5EDD8;
+    --ash: #F0EBE1;
+    --bark: #3D2B1A;
+    --saw: #D4A853;
+    --saw-light: #E8C17A;
+    --smoke: #6B5A48;
+    --grain: #9B7B5A;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Raleway', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--ash);
+    color: var(--walnut);
+    overflow-x: hidden;
+  }
+
+  /* Wood grain texture overlay via CSS */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(139,99,67,0.015) 2px,
+      rgba(139,99,67,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    background: rgba(44, 26, 14, 0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212,168,83,0.2);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .nav-logo-icon {
+    width: 38px;
+    height: 38px;
+    color: var(--saw);
+  }
+
+  .nav-logo-text .brand {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--pine);
+    letter-spacing: 1px;
+    display: block;
+    line-height: 1;
+  }
+
+  .nav-logo-text .sub {
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--saw);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(240,235,225,0.7);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0; width: 0;
+    height: 1px;
+    background: var(--saw);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--saw); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--saw) !important;
+    color: var(--walnut) !important;
+    padding: 10px 22px;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+  }
+
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--saw-light) !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--pine);
+  }
+
+  /* ===== SECTIONS ===== */
+  .page-section { display: none; min-height: 100vh; padding-top: 76px; }
+  .page-section.active { display: block; }
+
+  /* ===== HOME HERO ===== */
+  .hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(44,26,14,0.88) 0%, rgba(44,26,14,0.5) 55%, rgba(44,26,14,0.2) 100%),
+      url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=85') center/cover no-repeat;
+    animation: bgZoom 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    max-width: 780px;
+    animation: fadeUp 1.2s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--saw);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--saw);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 7.5vw, 96px);
+    font-weight: 700;
+    color: var(--pine);
+    line-height: 0.95;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--saw-light);
+    font-weight: 400;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(240,235,225,0.72);
+    font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 46px;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-wood {
+    background: var(--saw);
+    color: var(--walnut);
+    padding: 15px 34px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  .btn-wood:hover {
+    background: var(--saw-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(212,168,83,0.35);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(240,235,225,0.4);
+    color: var(--pine);
+    padding: 15px 34px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--font-body);
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--saw);
+    color: var(--saw);
+  }
+
+  /* Hero stats */
+  .hero-stats {
+    position: absolute;
+    right: 80px;
+    bottom: 80px;
+    z-index: 2;
+    display: flex;
+    gap: 50px;
+    animation: fadeUp 1.4s ease 0.3s both;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--saw);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(240,235,225,0.55);
+    margin-top: 4px;
+  }
+
+  /* Divider line */
+  .stat-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(212,168,83,0.25);
+    align-self: center;
+  }
+
+  /* ===== SECTION HELPERS ===== */
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--oak);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--oak);
+  }
+
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.5vw, 58px);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--walnut);
+    margin-bottom: 20px;
+  }
+
+  .sec-title em { font-style: italic; color: var(--oak); font-weight: 400; }
+
+  .sec-body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--smoke);
+    font-weight: 300;
+  }
+
+  /* ===== HOME — INTRO ===== */
+  .intro-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--pine-light);
+  }
+
+  .intro-text {
+    padding: 100px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .intro-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .intro-img {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .intro-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 200px;
+    transition: transform 0.5s;
+  }
+
+  .intro-img:hover img { transform: scale(1.06); }
+  .intro-img.tall { grid-row: span 2; }
+
+  /* ===== HOME — CRAFT STRIP ===== */
+  .craft-strip {
+    background: var(--walnut);
+    padding: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 3px solid var(--saw);
+  }
+
+  .craft-item {
+    padding: 30px 40px;
+    border-right: 1px solid rgba(212,168,83,0.15);
+    text-align: center;
+  }
+
+  .craft-item:last-child { border-right: none; }
+
+  .craft-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--saw);
+    margin: 0 auto 18px;
+  }
+
+  .craft-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--pine);
+    margin-bottom: 8px;
+  }
+
+  .craft-desc {
+    font-size: 12px;
+    color: rgba(196,154,108,0.7);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ===== HOME — WOOD IMAGE GRID ===== */
+  .wood-showcase {
+    padding: 100px 70px;
+    background: var(--ash);
+  }
+
+  .wood-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 280px 280px;
+    gap: 12px;
+    margin-top: 50px;
+  }
+
+  .wood-cell {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .wood-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+  }
+
+  .wood-cell:hover img { transform: scale(1.06); }
+
+  .wood-cell.featured { grid-column: span 2; }
+
+  .wood-cell-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(44,26,14,0.85) 0%, transparent 100%);
+    padding: 28px 20px 16px;
+    color: var(--pine);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    transform: translateY(100%);
+    transition: transform 0.35s ease;
+  }
+
+  .wood-cell:hover .wood-cell-label { transform: translateY(0); }
+
+  /* ===== SERVICES ===== */
+  #services { background: var(--pine-light); }
+
+  .services-banner {
+    height: 340px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45);
+  }
+
+  .services-banner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .services-banner-overlay h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--pine);
+    margin-bottom: 12px;
+  }
+
+  .services-banner-overlay p {
+    font-size: 14px;
+    color: rgba(240,235,225,0.75);
+    max-width: 500px;
+    font-weight: 300;
+  }
+
+  /* Service image panels */
+  .services-panels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .service-panel {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .service-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55);
+    transition: transform 0.6s, filter 0.4s;
+  }
+
+  .service-panel:hover img {
+    transform: scale(1.07);
+    filter: brightness(0.4);
+  }
+
+  .service-panel-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 28px;
+  }
+
+  .sp-num {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 700;
+    color: rgba(212,168,83,0.25);
+    line-height: 1;
+    margin-bottom: 8px;
+    transition: color 0.4s;
+  }
+
+  .service-panel:hover .sp-num { color: rgba(212,168,83,0.5); }
+
+  .sp-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--pine);
+    margin-bottom: 8px;
+  }
+
+  .sp-desc {
+    font-size: 12px;
+    color: rgba(240,235,225,0.7);
+    line-height: 1.7;
+    font-weight: 300;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .service-panel:hover .sp-desc { max-height: 100px; }
+
+  .sp-price {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--saw);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  /* Services detail cards */
+  .services-detail {
+    padding: 80px 70px;
+    background: var(--ash);
+  }
+
+  .services-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .svc-card {
+    background: var(--pine-light);
+    padding: 40px 34px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 40px 40px 0;
+    border-color: transparent var(--saw) transparent transparent;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .svc-card:hover {
+    border-bottom-color: var(--saw);
+    transform: translateY(-4px);
+  }
+
+  .svc-card:hover::before { opacity: 1; }
+
+  .svc-card-icon {
+    width: 44px;
+    height: 44px;
+    color: var(--oak);
+    margin-bottom: 18px;
+  }
+
+  .svc-card-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--walnut);
+    margin-bottom: 10px;
+  }
+
+  .svc-card-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--smoke);
+    font-weight: 300;
+  }
+
+  .svc-card-price {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--oak);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--pine);
+  }
+
+  .services-cta-bar {
+    background: var(--walnut);
+    padding: 70px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border-top: 3px solid var(--saw);
+  }
+
+  .services-cta-bar h3 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--pine);
+    font-weight: 600;
+    max-width: 500px;
+  }
+
+  /* ===== GALLERY ===== */
+  #gallery { background: var(--walnut); }
+
+  .gallery-header {
+    padding: 80px 70px 50px;
+    background: var(--walnut);
+  }
+
+  .gallery-header .eyebrow { color: var(--saw); }
+  .gallery-header .eyebrow::before { background: var(--saw); }
+  .gallery-header .sec-title { color: var(--pine); }
+  .gallery-header .sec-body { color: rgba(196,154,108,0.75); max-width: 520px; }
+
+  .gallery-filters {
+    display: flex;
+    gap: 8px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .gf-btn {
+    padding: 8px 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    font-weight: 500;
+    border: 1px solid rgba(212,168,83,0.3);
+    background: transparent;
+    color: rgba(240,235,225,0.6);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .gf-btn.active, .gf-btn:hover {
+    background: var(--saw);
+    color: var(--walnut);
+    border-color: var(--saw);
+  }
+
+  .gallery-masonry {
+    padding: 10px 20px 60px;
+    columns: 4;
+    column-gap: 10px;
+    background: var(--walnut);
+  }
+
+  .g-item {
+    break-inside: avoid;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .g-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s;
+  }
+
+  .g-item:hover img { transform: scale(1.05); }
+
+  .g-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(44,26,14,0.85) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px 16px;
+  }
+
+  .g-item:hover .g-overlay { opacity: 1; }
+
+  .g-caption {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--pine);
+  }
+
+  /* Scrolling strip */
+  .wood-strip {
+    overflow: hidden;
+    background: var(--bark);
+    padding: 14px 0;
+    border-top: 2px solid rgba(212,168,83,0.2);
+  }
+
+  .wood-strip-track {
+    display: flex;
+    gap: 10px;
+    animation: scrollStrip 28s linear infinite;
+    width: max-content;
+  }
+
+  .wood-strip-track img {
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    flex-shrink: 0;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+
+  .wood-strip-track img:hover { opacity: 1; }
+
+  @keyframes scrollStrip {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== ABOUT ===== */
+  #about { background: var(--pine-light); }
+
+  .about-hero-wrap {
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+  }
+
+  .about-hero-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(44,26,14,0.82) 0%, rgba(44,26,14,0.35) 60%, transparent 100%);
+    display: flex;
+    align-items: center;
+    padding: 80px;
+  }
+
+  .about-hero-text h1 {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6vw, 80px);
+    font-weight: 700;
+    color: var(--pine);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .about-hero-text p {
+    font-size: 15px;
+    color: rgba(240,235,225,0.75);
+    font-weight: 300;
+    max-width: 420px;
+  }
+
+  /* Workshop image collage */
+  .workshop-collage {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 200px;
+    gap: 3px;
+    background: var(--bark);
+  }
+
+  .workshop-collage div { overflow: hidden; }
+
+  .workshop-collage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s, filter 0.4s;
+    filter: sepia(20%);
+  }
+
+  .workshop-collage img:hover {
+    transform: scale(1.08);
+    filter: sepia(0%);
+  }
+
+  .about-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+  }
+
+  .about-story-img {
+    height: 550px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .about-story-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-story-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 60px;
+    height: 60px;
+    background: var(--saw);
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  }
+
+  .about-story-text {
+    padding: 80px 70px;
+    background: var(--pine-light);
+  }
+
+  .about-values {
+    background: var(--walnut);
+    padding: 80px 70px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+
+  .val-card {
+    padding-top: 24px;
+    border-top: 2px solid rgba(212,168,83,0.2);
+  }
+
+  .val-icon {
+    width: 38px;
+    height: 38px;
+    color: var(--saw);
+    margin-bottom: 14px;
+  }
+
+  .val-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--pine);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .val-desc {
+    font-size: 12px;
+    line-height: 1.8;
+    color: rgba(196,154,108,0.75);
+    font-weight: 300;
+  }
+
+  /* Team */
+  .team-section {
+    padding: 100px 70px;
+    background: var(--ash);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+  }
+
+  .team-card { position: relative; }
+
+  .team-photo-wrap {
+    overflow: hidden;
+    height: 340px;
+    position: relative;
+  }
+
+  .team-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(15%);
+    transition: all 0.5s;
+  }
+
+  .team-card:hover .team-photo-wrap img {
+    filter: sepia(0%);
+    transform: scale(1.03);
+  }
+
+  .team-info { padding: 22px 0 0; }
+
+  .team-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--walnut);
+  }
+
+  .team-role {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--oak);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .team-exp {
+    font-size: 12px;
+    color: var(--smoke);
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  /* ===== REVIEWS ===== */
+  #reviews { background: var(--ash); }
+
+  .reviews-header {
+    text-align: center;
+    padding: 90px 80px 60px;
+  }
+
+  .reviews-header .eyebrow { justify-content: center; }
+
+  .rating-bar {
+    background: var(--walnut);
+    padding: 50px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    flex-wrap: wrap;
+  }
+
+  .rating-big { text-align: center; }
+
+  .r-num {
+    font-family: var(--font-display);
+    font-size: 88px;
+    font-weight: 700;
+    color: var(--saw);
+    line-height: 1;
+  }
+
+  .r-stars { font-size: 22px; color: var(--saw); letter-spacing: 3px; margin: 6px 0; }
+  .r-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--grain); }
+
+  .r-divider { width: 1px; height: 90px; background: rgba(212,168,83,0.15); }
+
+  .r-breakdown { min-width: 280px; }
+
+  .r-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .r-bar-label { font-size: 12px; color: var(--grain); width: 35px; text-align: right; }
+
+  .r-bar-track {
+    flex: 1;
+    height: 5px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .r-bar-fill { height: 100%; background: var(--saw); border-radius: 2px; }
+  .r-bar-count { font-size: 11px; color: var(--grain); width: 30px; }
+
+  /* Testimonials */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 60px 70px 80px;
+    background: var(--ash);
+  }
+
+  .rev-card {
+    background: var(--pine-light);
+    padding: 40px 36px;
+    position: relative;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .rev-card:hover {
+    border-left-color: var(--saw);
+    transform: translateY(-4px);
+  }
+
+  .rev-quote {
+    font-family: var(--font-display);
+    font-size: 70px;
+    color: var(--saw);
+    opacity: 0.2;
+    line-height: 0.5;
+    margin-bottom: 18px;
+  }
+
+  .rev-text {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--walnut);
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+
+  .rev-stars { color: var(--saw); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+
+  .rev-author { display: flex; gap: 12px; align-items: center; }
+
+  .rev-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--pine);
+  }
+
+  .rev-name { font-size: 13px; font-weight: 600; color: var(--walnut); }
+  .rev-loc { font-size: 11px; color: var(--smoke); }
+  .rev-proj { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--oak); font-weight: 600; margin-top: 3px; }
+
+  /* Before/after showcase */
+  .before-after {
+    background: var(--bark);
+    padding: 80px 70px;
+    text-align: center;
+  }
+
+  .before-after .sec-title { color: var(--pine); margin-bottom: 10px; }
+  .before-after .sec-body { color: rgba(196,154,108,0.7); margin-bottom: 50px; }
+
+  .ba-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .ba-card { position: relative; overflow: hidden; }
+
+  .ba-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+
+  .ba-card:hover img { transform: scale(1.04); }
+
+  .ba-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--saw);
+    color: var(--walnut);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 5px 12px;
+  }
+
+  .ba-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(44,26,14,0.8);
+    color: var(--pine);
+    padding: 10px 14px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  /* ===== CONTACT ===== */
+  #contact { background: var(--ash); }
+
+  .contact-hero {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+    filter: brightness(0.4);
+  }
+
+  .contact-hero-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-hero-text h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    color: var(--pine);
+    margin-bottom: 10px;
+  }
+
+  .contact-hero-text p {
+    font-size: 14px;
+    color: rgba(240,235,225,0.7);
+    font-weight: 300;
+  }
+
+  .contact-body {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    min-height: 600px;
+  }
+
+  .contact-info-side {
+    background: var(--walnut);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-info-side::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,168,83,0.08);
+  }
+
+  .contact-info-side .sec-title { color: var(--pine); }
+  .contact-info-side .sec-body { color: rgba(196,154,108,0.7); margin-bottom: 40px; }
+
+  .c-items { display: flex; flex-direction: column; gap: 24px; position: relative; z-index: 1; }
+
+  .c-item { display: flex; gap: 14px; align-items: flex-start; }
+
+  .c-icon {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(212,168,83,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--saw);
+    flex-shrink: 0;
+  }
+
+  .c-label { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--saw); font-weight: 600; margin-bottom: 3px; }
+  .c-value { font-size: 13px; color: var(--pine); line-height: 1.6; font-weight: 300; }
+
+  /* Workshop mini-gallery in contact */
+  .contact-workshop-imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin-top: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-workshop-imgs img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+
+  .contact-workshop-imgs img:hover { opacity: 1; transform: scale(1.03); }
+
+  .contact-form-side {
+    background: var(--ash);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--walnut);
+    margin-bottom: 8px;
+  }
+
+  .form-sub { font-size: 13px; color: var(--smoke); line-height: 1.7; margin-bottom: 36px; font-weight: 300; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 22px; }
+
+  .f-label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--smoke);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .f-input, .f-select, .f-textarea {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid var(--pine);
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--walnut);
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .f-input:focus, .f-select:focus, .f-textarea:focus { border-bottom-color: var(--oak); }
+  .f-textarea { resize: none; height: 90px; }
+  .f-select option { background: var(--ash); }
+
+  .submit-btn {
+    background: var(--walnut);
+    color: var(--pine);
+    padding: 16px 44px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--saw);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0;
+  }
+
+  .submit-btn span { position: relative; z-index: 1; }
+  .submit-btn:hover::after { transform: translateX(0); }
+  .submit-btn:hover { color: var(--walnut); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--bark);
+    padding: 70px 70px 36px;
+    border-top: 3px solid rgba(212,168,83,0.2);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(212,168,83,0.12);
+    margin-bottom: 36px;
+  }
+
+  .footer-brand .brand {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--pine);
+    letter-spacing: 1px;
+  }
+
+  .footer-brand .sub {
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--saw);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .footer-brand p { font-size: 13px; color: var(--grain); line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
+
+  .footer-socials { display: flex; gap: 10px; }
+
+  .fsoc {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(212,168,83,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grain);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .fsoc:hover { border-color: var(--saw); color: var(--saw); }
+
+  .footer-col h4 {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--saw);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+  .footer-col ul li a {
+    font-size: 13px;
+    color: var(--grain);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  .footer-col ul li a:hover { color: var(--saw); }
+
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 11px; color: var(--grain); font-weight: 300; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 36px;
+    right: 36px;
+    background: var(--walnut);
+    color: var(--pine);
+    padding: 14px 24px;
+    font-size: 13px;
+    border-left: 3px solid var(--saw);
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44,26,14,0.96);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+
+  .lb-close {
+    position: absolute;
+    top: 24px;
+    right: 36px;
+    font-size: 36px;
+    color: var(--pine);
+    cursor: pointer;
+    font-family: var(--font-display);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+  }
+
+  .lb-close:hover { opacity: 1; }
+
+  .lb-nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  .lb-btn {
+    background: rgba(212,168,83,0.15);
+    border: 1px solid rgba(212,168,83,0.3);
+    color: var(--saw);
+    padding: 8px 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.3s;
+  }
+
+  .lb-btn:hover { background: var(--saw); color: var(--walnut); }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    nav { padding: 0 30px; }
+    .hero-content { padding: 0 40px; }
+    .hero-stats { right: 40px; bottom: 60px; gap: 30px; }
+    .intro-wrap { grid-template-columns: 1fr; }
+    .craft-strip { grid-template-columns: repeat(2, 1fr); padding: 60px 40px; }
+    .wood-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .wood-cell.featured { grid-column: span 2; }
+    .services-panels { grid-template-columns: repeat(2, 1fr); }
+    .services-card-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-story { grid-template-columns: 1fr; }
+    .about-values { grid-template-columns: repeat(2, 1fr); padding: 60px 40px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); padding: 40px; }
+    .ba-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-body { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-masonry { columns: 3; }
+    .workshop-collage { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-content { padding: 0 24px; }
+    .hero-stats { display: none; }
+    .craft-strip { grid-template-columns: 1fr; padding: 40px 24px; }
+    .wood-grid { grid-template-columns: 1fr; }
+    .wood-cell.featured { grid-column: span 1; }
+    .wood-showcase { padding: 60px 24px; }
+    .intro-text { padding: 60px 24px; }
+    .services-panels { grid-template-columns: 1fr; }
+    .services-card-grid { grid-template-columns: 1fr; }
+    .services-detail, .services-cta-bar { padding: 50px 24px; }
+    .services-cta-bar { flex-direction: column; text-align: center; }
+    .about-values { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .gallery-header, .gallery-masonry, .wood-showcase { padding: 50px 16px 40px; }
+    .gallery-masonry { columns: 2; }
+    .reviews-grid { grid-template-columns: 1fr; padding: 30px 24px; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .contact-info-side, .contact-form-side { padding: 60px 24px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    footer { padding: 50px 24px 30px; }
+    .rating-bar { gap: 30px; padding: 40px 24px; }
+    .about-story-text { padding: 60px 24px; }
+    .team-section { padding: 60px 24px; }
+    .workshop-collage { grid-template-columns: repeat(3, 1fr); }
+    .before-after { padding: 60px 24px; }
+    .reviews-header { padding: 60px 24px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M8 40 L24 8 L40 40 Z"/>
+      <path d="M16 26 h16"/>
+      <circle cx="24" cy="8" r="2" fill="currentColor"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="brand">NEMCO</span>
+      <span class="sub">Carpenter Inc</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('services')">Services</a></li>
+    <li><a href="#" onclick="showPage('gallery')">Our Work</a></li>
+    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+    <li><a href="#" onclick="showPage('reviews')">Reviews</a></li>
+    <li><a href="#" onclick="showPage('contact')" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===================== HOME ===================== -->
+<section id="home" class="page-section active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Master Craftsmen Since 1998</div>
+      <h1 class="hero-title">Crafted<br>in <em>Wood,</em><br>Built to Last</h1>
+      <p class="hero-desc">Nemco Carpenter Inc brings over 26 years of precision woodworking to homes and businesses. Custom furniture, cabinetry, flooring, and structural carpentry — all made by hand with lasting materials.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-wood" onclick="showPage('gallery')">View Our Work</a>
+        <a href="#" class="btn-outline" onclick="showPage('contact')">Get a Free Quote</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">26+</span>
+        <div class="stat-label">Years in Craft</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">1,200+</span>
+        <div class="stat-label">Projects Done</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="intro-wrap">
+    <div class="intro-text">
+      <div class="eyebrow">Who We Are</div>
+      <h2 class="sec-title">Where <em>Wood</em> Tells Its Story</h2>
+      <p class="sec-body">Every piece of wood has a grain, a character, a story. At Nemco Carpenter Inc, we honour that story by transforming raw timber into enduring masterpieces — from bespoke furniture to entire room fitouts.</p>
+      <br>
+      <p class="sec-body">Founded by Master Carpenter Neil Emco in 1998, our workshop has grown from a single bench to a full-service joinery studio, serving residential clients, architects, and interior designers across the region.</p>
+      <br>
+      <a href="#" class="btn-wood" style="margin-top:20px" onclick="showPage('about')">Our Story</a>
+    </div>
+    <div class="intro-images">
+      <div class="intro-img tall">
+        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=85" alt="Woodworking">
+      </div>
+      <div class="intro-img">
+        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=400&q=85" alt="Workshop">
+      </div>
+      <div class="intro-img">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=85" alt="Wood Detail">
+      </div>
+    </div>
+  </div>
+
+  <!-- Craft specialties -->
+  <div class="craft-strip">
+    <div class="craft-item">
+      <svg class="craft-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="6" y="16" width="36" height="24" rx="2"/>
+        <path d="M6 24h36M16 16V12a8 8 0 0116 0v4"/>
+        <line x1="24" y1="28" x2="24" y2="34"/>
+      </svg>
+      <div class="craft-name">Custom Cabinetry</div>
+      <div class="craft-desc">Hand-crafted cabinets built to your exact specifications in any timber.</div>
+    </div>
+    <div class="craft-item">
+      <svg class="craft-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="4" y="34" width="40" height="8" rx="1"/>
+        <rect x="8" y="10" width="14" height="24" rx="1"/>
+        <rect x="26" y="18" width="14" height="16" rx="1"/>
+        <line x1="8" y1="22" x2="22" y2="22"/>
+      </svg>
+      <div class="craft-name">Custom Furniture</div>
+      <div class="craft-desc">Tables, chairs, beds and shelving designed and built from scratch.</div>
+    </div>
+    <div class="craft-item">
+      <svg class="craft-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="4" y="4" width="40" height="40" rx="2"/>
+        <line x1="14" y1="4" x2="14" y2="44"/>
+        <line x1="24" y1="4" x2="24" y2="44"/>
+        <line x1="34" y1="4" x2="34" y2="44"/>
+        <line x1="4" y1="14" x2="44" y2="14"/>
+        <line x1="4" y1="24" x2="44" y2="24"/>
+        <line x1="4" y1="34" x2="44" y2="34"/>
+      </svg>
+      <div class="craft-name">Hardwood Flooring</div>
+      <div class="craft-desc">Installation, sanding and finishing of all hardwood floor types.</div>
+    </div>
+    <div class="craft-item">
+      <svg class="craft-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 40V12L24 6l16 6v28H8z"/>
+        <rect x="18" y="28" width="12" height="12"/>
+        <line x1="14" y1="18" x2="14" y2="28"/>
+        <line x1="34" y1="18" x2="34" y2="28"/>
+        <line x1="14" y1="18" x2="34" y2="18"/>
+      </svg>
+      <div class="craft-name">Structural Carpentry</div>
+      <div class="craft-desc">Framing, roofing, decking and all structural timber work.</div>
+    </div>
+  </div>
+
+  <!-- Wood image showcase -->
+  <div class="wood-showcase">
+    <div class="eyebrow">From Our Workshop</div>
+    <h2 class="sec-title">Recent <em>Woodwork</em> Projects</h2>
+    <div class="wood-grid">
+      <div class="wood-cell featured" onclick="openLB(this)">
+        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=900&q=85" alt="Custom Table">
+        <div class="wood-cell-label">Custom Walnut Dining Table — Henderson Residence</div>
+      </div>
+      <div class="wood-cell" onclick="openLB(this)">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=85" alt="Cabinet">
+        <div class="wood-cell-label">Oak Kitchen Cabinetry</div>
+      </div>
+      <div class="wood-cell" onclick="openLB(this)">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=500&q=85" alt="Office">
+        <div class="wood-cell-label">Built-in Office Shelving</div>
+      </div>
+      <div class="wood-cell" onclick="openLB(this)">
+        <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=500&q=85" alt="Flooring">
+        <div class="wood-cell-label">Herringbone Hardwood Floor</div>
+      </div>
+      <div class="wood-cell" onclick="openLB(this)">
+        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?w=500&q=85" alt="Door">
+        <div class="wood-cell-label">Hand-carved Panel Door</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services" class="page-section">
+
+  <div class="services-banner">
+    <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=1600&q=85" alt="Carpentry">
+    <div class="services-banner-overlay">
+      <h1>Our Services</h1>
+      <p>From raw timber to finished masterpiece — every service delivered with precision and pride.</p>
+    </div>
+  </div>
+
+  <!-- Service image panels -->
+  <div class="services-panels">
+    <div class="service-panel">
+      <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=700&q=85" alt="Cabinetry">
+      <div class="service-panel-content">
+        <div class="sp-num">01</div>
+        <div class="sp-name">Custom Cabinetry</div>
+        <div class="sp-desc">Kitchen, bathroom, living room and garage cabinetry built to order. Solid wood joinery with dovetail joints and traditional hand-finishing techniques.</div>
+        <div class="sp-price">From $1,800 / unit</div>
+      </div>
+    </div>
+    <div class="service-panel">
+      <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=700&q=85" alt="Furniture">
+      <div class="service-panel-content">
+        <div class="sp-num">02</div>
+        <div class="sp-name">Bespoke Furniture</div>
+        <div class="sp-desc">Dining tables, beds, wardrobes, desks and chairs designed and built to your exact specifications. Any timber, any size, any finish.</div>
+        <div class="sp-price">From $800 / piece</div>
+      </div>
+    </div>
+    <div class="service-panel">
+      <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=700&q=85" alt="Flooring">
+      <div class="service-panel-content">
+        <div class="sp-num">03</div>
+        <div class="sp-name">Hardwood Flooring</div>
+        <div class="sp-desc">Supply and installation of solid hardwood, engineered wood, parquet and herringbone flooring. Including sanding, staining and sealing of existing floors.</div>
+        <div class="sp-price">From $12 / sq ft</div>
+      </div>
+    </div>
+    <div class="service-panel">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&q=85" alt="Decking">
+      <div class="service-panel-content">
+        <div class="sp-num">04</div>
+        <div class="sp-name">Decking & Outdoor</div>
+        <div class="sp-desc">Treated timber decks, pergolas, garden furniture and fencing. Weather-resistant hardwoods and composite options for lasting outdoor performance.</div>
+        <div class="sp-price">From $25 / sq ft</div>
+      </div>
+    </div>
+    <div class="service-panel">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85" alt="Framing">
+      <div class="service-panel-content">
+        <div class="sp-num">05</div>
+        <div class="sp-name">Structural Framing</div>
+        <div class="sp-desc">Timber frame construction, roof trusses, wall framing and sub-floor systems. Commercial and residential structural carpentry to code.</div>
+        <div class="sp-price">Custom quote</div>
+      </div>
+    </div>
+    <div class="service-panel">
+      <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=700&q=85" alt="Restoration">
+      <div class="service-panel-content">
+        <div class="sp-num">06</div>
+        <div class="sp-name">Restoration & Repair</div>
+        <div class="sp-desc">Antique furniture restoration, door repairs, window frame replacement and heritage joinery matching. Preserving the character of original woodwork.</div>
+        <div class="sp-price">From $150 / hr</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed service cards -->
+  <div class="services-detail">
+    <div class="eyebrow">Full Service List</div>
+    <h2 class="sec-title">Everything We <em>Build</em></h2>
+    <div class="services-card-grid">
+      <div class="svc-card">
+        <svg class="svc-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="16" width="36" height="24" rx="2"/>
+          <path d="M6 24h36M16 16V12a8 8 0 0116 0v4"/>
+        </svg>
+        <div class="svc-card-name">Kitchen Cabinetry</div>
+        <p class="svc-card-desc">Full kitchen fitouts with soft-close hinges, pull-out drawers, lazy Susans and integrated organizers. Available in oak, maple, walnut, pine and painted MDF.</p>
+        <div class="svc-card-price">From $3,500 full kitchen</div>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="6" width="32" height="36" rx="2"/>
+          <line x1="8" y1="22" x2="40" y2="22"/>
+          <line x1="24" y1="6" x2="24" y2="42"/>
+        </svg>
+        <div class="svc-card-name">Built-in Wardrobes</div>
+        <p class="svc-card-desc">Floor-to-ceiling wardrobes with custom internal fittings — hanging rails, shoe racks, drawers and shelving. Sliding or hinged door options.</p>
+        <div class="svc-card-price">From $1,200 per wardrobe</div>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 36 h32 v4 H8z"/>
+          <rect x="10" y="12" width="28" height="24"/>
+          <path d="M16 12V8h16v4"/>
+        </svg>
+        <div class="svc-card-name">Dining Tables</div>
+        <p class="svc-card-desc">Solid wood dining tables in any size and species. Live-edge slabs, jointed tops, trestle bases and hairpin legs — all made to order.</p>
+        <div class="svc-card-price">From $1,400 per table</div>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="4" y="28" width="40" height="12" rx="2"/>
+          <rect x="10" y="8" width="28" height="20" rx="2"/>
+          <line x1="12" y1="28" x2="12" y2="40"/>
+          <line x1="36" y1="28" x2="36" y2="40"/>
+        </svg>
+        <div class="svc-card-name">Bed Frames</div>
+        <p class="svc-card-desc">Platform beds, sleigh beds and four-poster frames handcrafted in solid timber. All sizes including custom. Headboards with carved or routed designs available.</p>
+        <div class="svc-card-price">From $900 per frame</div>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 44 V8 L24 4 L44 8 V44"/>
+          <line x1="4" y1="44" x2="44" y2="44"/>
+          <rect x="18" y="30" width="12" height="14"/>
+          <line x1="12" y1="16" x2="12" y2="26"/>
+          <line x1="36" y1="16" x2="36" y2="26"/>
+        </svg>
+        <div class="svc-card-name">Doors & Frames</div>
+        <p class="svc-card-desc">Solid timber interior and exterior doors, architraves and frames. Custom panel configurations, stained glass inserts and decorative mouldings.</p>
+        <div class="svc-card-price">From $600 per door</div>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 40 L6 14 L24 8 L42 14 L42 40"/>
+          <path d="M6 14 L24 20 L42 14"/>
+          <line x1="24" y1="8" x2="24" y2="40"/>
+          <line x1="6" y1="40" x2="42" y2="40"/>
+        </svg>
+        <div class="svc-card-name">Stairs & Balustrades</div>
+        <p class="svc-card-desc">Staircase construction and refurbishment including treads, risers, newel posts and balustrades. Traditional, contemporary and open-riser designs.</p>
+        <div class="svc-card-price">From $4,000 per staircase</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services-cta-bar">
+    <h3>Ready to Start Your Woodwork Project?</h3>
+    <a href="#" class="btn-wood" onclick="showPage('contact')">Get a Free Quote →</a>
+  </div>
+
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery" class="page-section">
+
+  <div class="gallery-header">
+    <div class="eyebrow">Portfolio</div>
+    <h2 class="sec-title" style="color:var(--pine)">The Work of Our <em style="color:var(--saw-light)">Hands</em></h2>
+    <p class="sec-body">Over 1,200 projects completed — from single custom pieces to full home renovations. Browse our portfolio by category.</p>
+    <div class="gallery-filters">
+      <button class="gf-btn active" onclick="filterGallery(this,'all')">All Work</button>
+      <button class="gf-btn" onclick="filterGallery(this,'furniture')">Furniture</button>
+      <button class="gf-btn" onclick="filterGallery(this,'cabinetry')">Cabinetry</button>
+      <button class="gf-btn" onclick="filterGallery(this,'flooring')">Flooring</button>
+      <button class="gf-btn" onclick="filterGallery(this,'doors')">Doors & Stairs</button>
+      <button class="gf-btn" onclick="filterGallery(this,'outdoor')">Outdoor</button>
+      <button class="gf-btn" onclick="filterGallery(this,'workshop')">Workshop</button>
+    </div>
+  </div>
+
+  <div class="gallery-masonry" id="galleryGrid">
+
+    <!-- Furniture -->
+    <div class="g-item" data-cat="furniture" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&q=85" alt="Walnut Table">
+      <div class="g-overlay"><div class="g-caption">Custom Walnut Dining Table</div></div>
+    </div>
+    <div class="g-item" data-cat="cabinetry" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=85" alt="Kitchen Cabinets">
+      <div class="g-overlay"><div class="g-caption">White Oak Kitchen Cabinetry</div></div>
+    </div>
+    <div class="g-item" data-cat="workshop" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=85" alt="Craftsman at work">
+      <div class="g-overlay"><div class="g-caption">Master Craftsman at the Bench</div></div>
+    </div>
+    <div class="g-item" data-cat="flooring" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600&q=85" alt="Hardwood Floor">
+      <div class="g-overlay"><div class="g-caption">Herringbone Oak Flooring</div></div>
+    </div>
+    <div class="g-item" data-cat="furniture" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=85" alt="Sofa & Table">
+      <div class="g-overlay"><div class="g-caption">Live Edge Coffee Table</div></div>
+    </div>
+    <div class="g-item" data-cat="workshop" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&q=85" alt="Wood Turning">
+      <div class="g-overlay"><div class="g-caption">Wood Turning — Tool Detail</div></div>
+    </div>
+    <div class="g-item" data-cat="cabinetry" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&q=85" alt="Kitchen">
+      <div class="g-overlay"><div class="g-caption">Shaker Kitchen — Full Fitout</div></div>
+    </div>
+    <div class="g-item" data-cat="outdoor" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=85" alt="Deck">
+      <div class="g-overlay"><div class="g-caption">Spotted Gum Timber Deck</div></div>
+    </div>
+    <div class="g-item" data-cat="doors" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?w=600&q=85" alt="Door">
+      <div class="g-overlay"><div class="g-caption">Hand-carved Solid Timber Door</div></div>
+    </div>
+    <div class="g-item" data-cat="workshop" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&q=85" alt="Workshop">
+      <div class="g-overlay"><div class="g-caption">The Nemco Workshop Floor</div></div>
+    </div>
+    <div class="g-item" data-cat="furniture" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=85" alt="Bookcase">
+      <div class="g-overlay"><div class="g-caption">Floor-to-Ceiling Bookcase</div></div>
+    </div>
+    <div class="g-item" data-cat="flooring" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=85" alt="Bathroom Floor">
+      <div class="g-overlay"><div class="g-caption">Teak Bathroom Flooring</div></div>
+    </div>
+    <div class="g-item" data-cat="furniture" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=85" alt="Bed Frame">
+      <div class="g-overlay"><div class="g-caption">King Sleigh Bed — Blackwood</div></div>
+    </div>
+    <div class="g-item" data-cat="outdoor" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=85" alt="Pergola">
+      <div class="g-overlay"><div class="g-caption">Cedar Pergola & Garden Bench</div></div>
+    </div>
+    <div class="g-item" data-cat="cabinetry" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=85" alt="Kitchen 2">
+      <div class="g-overlay"><div class="g-caption">Marble & Timber Kitchen Island</div></div>
+    </div>
+    <div class="g-item" data-cat="workshop" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85" alt="Saw">
+      <div class="g-overlay"><div class="g-caption">Table Saw — Precision Cutting</div></div>
+    </div>
+    <div class="g-item" data-cat="doors" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=85" alt="Stairs">
+      <div class="g-overlay"><div class="g-caption">Open-Riser Timber Staircase</div></div>
+    </div>
+    <div class="g-item" data-cat="furniture" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=85" alt="Shelving">
+      <div class="g-overlay"><div class="g-caption">Floating Timber Shelves</div></div>
+    </div>
+    <div class="g-item" data-cat="flooring" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&q=85" alt="Floor">
+      <div class="g-overlay"><div class="g-caption">Wide Plank Engineered Oak</div></div>
+    </div>
+    <div class="g-item" data-cat="cabinetry" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=85" alt="Media Unit">
+      <div class="g-overlay"><div class="g-caption">Built-in TV & Media Cabinet</div></div>
+    </div>
+    <div class="g-item" data-cat="outdoor" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=85" alt="Garden">
+      <div class="g-overlay"><div class="g-caption">Timber Garden Furniture Set</div></div>
+    </div>
+    <div class="g-item" data-cat="workshop" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=85" alt="Wood Types">
+      <div class="g-overlay"><div class="g-caption">Timber Selection — Showroom</div></div>
+    </div>
+    <div class="g-item" data-cat="furniture" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&q=85" alt="Furniture">
+      <div class="g-overlay"><div class="g-caption">Bedside Tables — Pair</div></div>
+    </div>
+    <div class="g-item" data-cat="doors" onclick="openLB(this)">
+      <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=600&q=85" alt="Office">
+      <div class="g-overlay"><div class="g-caption">Solid Oak Office Fitout</div></div>
+    </div>
+  </div>
+
+  <!-- Scrolling strip -->
+  <div class="wood-strip">
+    <div class="wood-strip-track">
+      <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&h=220&fit=crop&q=80" alt="">
+      <!-- Duplicate for loop -->
+      <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=220&fit=crop&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=400&h=220&fit=crop&q=80" alt="">
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="page-section">
+
+  <div class="about-hero-wrap">
+    <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=1800&q=85" alt="Workshop">
+    <div class="about-hero-overlay">
+      <div class="about-hero-text">
+        <h1>About<br><em style="font-style:italic;font-weight:400">Nemco</em></h1>
+        <p>26 years of craft, character and commitment to the finest woodwork.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workshop image collage -->
+  <div class="workshop-collage">
+    <div><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Workshop"></div>
+    <div><img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=400&q=80" alt="Turning"></div>
+    <div><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&q=80" alt="Craftsman"></div>
+    <div><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Timber"></div>
+    <div><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&q=80" alt="Table"></div>
+  </div>
+
+  <!-- Story -->
+  <div class="about-story">
+    <div class="about-story-img">
+      <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&q=85" alt="Neil Emco">
+    </div>
+    <div class="about-story-text">
+      <div class="eyebrow">Our Story</div>
+      <h2 class="sec-title">26 Years,<br>One <em>Passion</em></h2>
+      <p class="sec-body">Nemco Carpenter Inc was founded in 1998 by Neil Emco — a third-generation carpenter who learned his trade from his father in a workshop in rural Vermont. Armed with a set of hand tools, a secondhand table saw, and an unshakeable belief in honest craftsmanship, Neil opened his first workshop out of his garage.</p>
+      <br>
+      <p class="sec-body">Today, Nemco operates from a 6,000 sq ft purpose-built workshop with a team of 14 skilled carpenters and joiners. We serve residential clients, architects, interior designers and commercial developers — but our approach has never changed: every piece is planned carefully, cut precisely, joined with care, and finished with pride.</p>
+      <br>
+      <p class="sec-body">We've completed over 1,200 projects ranging from a single handcrafted stool to a complete 12-room home fitout. Every job, regardless of size, gets the same attention to detail that built our reputation.</p>
+      <br>
+      <a href="#" class="btn-wood" onclick="showPage('contact')">Work With Us</a>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div class="about-values">
+    <div class="val-card">
+      <svg class="val-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M24 4 L28 16 H40 L30 24 L34 36 L24 28 L14 36 L18 24 L8 16 H20 Z" fill="rgba(212,168,83,0.2)"/>
+      </svg>
+      <div class="val-name">Master Craft</div>
+      <p class="val-desc">Every joint, every surface, every finish meets the exacting standard of a master joiner. We do not cut corners — ever.</p>
+    </div>
+    <div class="val-card">
+      <svg class="val-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="24" cy="24" r="18"/>
+        <path d="M24 14 v10 l8 5"/>
+      </svg>
+      <div class="val-name">On Time</div>
+      <p class="val-desc">We quote realistic timelines and keep them. Our clients know when their project will be done — and it always is.</p>
+    </div>
+    <div class="val-card">
+      <svg class="val-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 24 L20 32 L36 16"/>
+        <circle cx="24" cy="24" r="18"/>
+      </svg>
+      <div class="val-name">Guaranteed</div>
+      <p class="val-desc">All our work is backed by a 10-year structural guarantee and a lifetime of honest advice if you ever need us again.</p>
+    </div>
+    <div class="val-card">
+      <svg class="val-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M24 6 C24 6 8 16 8 28 a16 16 0 0 0 32 0 C40 16 24 6 24 6z"/>
+        <path d="M24 18 v12 M18 24 h12"/>
+      </svg>
+      <div class="val-name">Sustainable</div>
+      <p class="val-desc">We source timber from certified sustainable forests and manage our waste responsibly. Good craft and good stewardship go hand in hand.</p>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="team-section">
+    <div class="eyebrow">Our Team</div>
+    <h2 class="sec-title">The <em>Craftsmen</em> Behind the Work</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=85" alt="Neil Emco">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Neil Emco</div>
+          <div class="team-role">Founder & Master Carpenter</div>
+          <div class="team-exp">26 years experience · Third-generation craftsman</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85" alt="Marcus Dill">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Marcus Dill</div>
+          <div class="team-role">Senior Joiner & Cabinetmaker</div>
+          <div class="team-exp">18 years experience · Specialist in kitchens</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=85" alt="Thomas Reed">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Thomas Reed</div>
+          <div class="team-role">Structural Carpenter</div>
+          <div class="team-exp">14 years experience · Framing & stairs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section id="reviews" class="page-section">
+
+  <div class="reviews-header">
+    <div class="eyebrow">Testimonials</div>
+    <h2 class="sec-title">What Our Clients <em>Say</em></h2>
+    <p class="sec-body" style="max-width:480px;margin:0 auto">Over two decades of projects. Over a thousand happy clients. Here's what some of them had to say.</p>
+  </div>
+
+  <!-- Rating bar -->
+  <div class="rating-bar">
+    <div class="rating-big">
+      <div class="r-num">4.9</div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-label">Average Rating</div>
+    </div>
+    <div class="r-divider"></div>
+    <div class="r-breakdown">
+      <div class="r-bar-row">
+        <span class="r-bar-label">5 ★</span>
+        <div class="r-bar-track"><div class="r-bar-fill" style="width:91%"></div></div>
+        <span class="r-bar-count">91%</span>
+      </div>
+      <div class="r-bar-row">
+        <span class="r-bar-label">4 ★</span>
+        <div class="r-bar-track"><div class="r-bar-fill" style="width:7%"></div></div>
+        <span class="r-bar-count">7%</span>
+      </div>
+      <div class="r-bar-row">
+        <span class="r-bar-label">3 ★</span>
+        <div class="r-bar-track"><div class="r-bar-fill" style="width:1%"></div></div>
+        <span class="r-bar-count">1%</span>
+      </div>
+      <div class="r-bar-row">
+        <span class="r-bar-label">2 ★</span>
+        <div class="r-bar-track"><div class="r-bar-fill" style="width:1%"></div></div>
+        <span class="r-bar-count">1%</span>
+      </div>
+      <div class="r-bar-row">
+        <span class="r-bar-label">1 ★</span>
+        <div class="r-bar-track"><div class="r-bar-fill" style="width:0%"></div></div>
+        <span class="r-bar-count">0%</span>
+      </div>
+    </div>
+    <div class="r-divider"></div>
+    <div style="text-align:center">
+      <div style="font-family:var(--font-display);font-size:64px;font-weight:700;color:var(--saw);line-height:1">1,200+</div>
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--grain);margin-top:6px">Verified Projects</div>
+    </div>
+  </div>
+
+  <!-- Review cards -->
+  <div class="reviews-grid">
+    <div class="rev-card">
+      <div class="rev-quote">"</div>
+      <p class="rev-text">Neil and his team built our entire kitchen from scratch — cabinets, island, shelving. The quality is just extraordinary. People still comment on it every time they visit. Money well spent.</p>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-author">
+        <img class="rev-avatar" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&q=80" alt="">
+        <div>
+          <div class="rev-name">Patricia Moore</div>
+          <div class="rev-loc">Burlington, Vermont</div>
+          <div class="rev-proj">Kitchen Fitout — Full Project</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-quote">"</div>
+      <p class="rev-text">We commissioned a custom walnut dining table for 12. It arrived ahead of schedule, perfectly finished and more beautiful than the drawings suggested. Nemco is the real deal.</p>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-author">
+        <img class="rev-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="">
+        <div>
+          <div class="rev-name">James Hargrove</div>
+          <div class="rev-loc">Portland, Oregon</div>
+          <div class="rev-proj">Custom Dining Table</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-quote">"</div>
+      <p class="rev-text">We've used Nemco for three projects now — flooring, wardrobes and a deck. Every single time the quality, communication and price have been outstanding. They're our go-to forever.</p>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-author">
+        <img class="rev-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="">
+        <div>
+          <div class="rev-name">Sarah Billings</div>
+          <div class="rev-loc">Denver, Colorado</div>
+          <div class="rev-proj">Flooring, Wardrobes & Deck</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-quote">"</div>
+      <p class="rev-text">As an interior designer I work with many trades. Nemco Carpenter is on a different level — precise, clean, professional. The staircase they built for my client is an absolute showpiece.</p>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-author">
+        <img class="rev-avatar" src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=80" alt="">
+        <div>
+          <div class="rev-name">Diana Cho</div>
+          <div class="rev-loc">Interior Designer, Seattle</div>
+          <div class="rev-proj">Custom Staircase — Timber</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-quote">"</div>
+      <p class="rev-text">The restoration they did on my 1920s oak floors was miraculous. I thought they'd need to be replaced. Nemco brought them back to life — better than new. Skilled, respectful, trustworthy.</p>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-author">
+        <img class="rev-avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&q=80" alt="">
+        <div>
+          <div class="rev-name">Robert Bell</div>
+          <div class="rev-loc">Boston, Massachusetts</div>
+          <div class="rev-proj">Heritage Floor Restoration</div>
+        </div>
+      </div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-quote">"</div>
+      <p class="rev-text">Built-in bookshelves spanning an entire 18-foot wall. Every shelf is perfectly level, perfectly spaced, and perfectly finished. Our home library is now our favourite room in the house.</p>
+      <div class="rev-stars">★★★★★</div>
+      <div class="rev-author">
+        <img class="rev-avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="">
+        <div>
+          <div class="rev-name">Michael Tan</div>
+          <div class="rev-loc">Austin, Texas</div>
+          <div class="rev-proj">Library Wall — Built-In Shelving</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Before/After Showcase -->
+  <div class="before-after">
+    <div class="eyebrow" style="justify-content:center;color:var(--saw)">
+      <span style="display:block;width:28px;height:2px;background:var(--saw)"></span>
+      Transformations
+    </div>
+    <h2 class="sec-title" style="color:var(--pine)">Before & <em>After</em></h2>
+    <p class="sec-body">The proof is in the results. See how we've transformed raw timber and tired spaces.</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=85" alt="">
+        <div class="ba-tag">After</div>
+        <div class="ba-label">Kitchen Renovation — Oak & Marble</div>
+      </div>
+      <div class="ba-card">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=85" alt="">
+        <div class="ba-tag">After</div>
+        <div class="ba-label">Living Room — Floating Shelves & Unit</div>
+      </div>
+      <div class="ba-card">
+        <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=600&q=85" alt="">
+        <div class="ba-tag">After</div>
+        <div class="ba-label">Herringbone Flooring — Hallway</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="page-section">
+
+  <div class="contact-hero">
+    <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=1800&q=85" alt="Workshop">
+    <div class="contact-hero-text">
+      <h1>Get in Touch</h1>
+      <p>Tell us about your project and we'll get back to you within 24 hours with a free quote.</p>
+    </div>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-info-side">
+      <div class="eyebrow" style="color:var(--saw)">
+        <span style="background:var(--saw)"></span>Contact Info
+      </div>
+      <h2 class="sec-title" style="color:var(--pine)">Visit Our<br><em style="color:var(--saw-light)">Workshop</em></h2>
+      <p class="sec-body">We welcome clients to visit our workshop, view timber samples and meet the team. Please call ahead to arrange a time.</p>
+
+      <div class="c-items">
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="c-label">Workshop Address</div>
+            <div class="c-value">88 Timber Lane, Workshop Bay<br>Burlington, Vermont 05401</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.32 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-value">+1 (802) 555-0247<br>Mon–Fri 7am–5pm, Sat 8am–1pm</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-value">hello@nemcocarpenter.com<br>quotes@nemcocarpenter.com</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="c-label">Workshop Hours</div>
+            <div class="c-value">Mon–Fri: 7:00am – 5:00pm<br>Saturday: 8:00am – 1:00pm</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini workshop gallery -->
+      <div class="contact-workshop-imgs">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" alt="Workshop">
+        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=300&q=80" alt="Tools">
+        <img src="https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=300&q=80" alt="Lathe">
+        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=300&q=80" alt="Craftsman">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&q=80" alt="Wood">
+        <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=300&q=80" alt="Table">
+      </div>
+    </div>
+
+    <div class="contact-form-side">
+      <div class="form-title">Request a Quote</div>
+      <p class="form-sub">Fill out the form and we'll come back to you within one business day with a detailed, no-obligation quote.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="f-label">First Name</label>
+          <input type="text" class="f-input" id="fname" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label class="f-label">Last Name</label>
+          <input type="text" class="f-input" id="lname" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="f-label">Email Address</label>
+        <input type="email" class="f-input" id="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="f-label">Phone Number</label>
+        <input type="tel" class="f-input" id="phone" placeholder="+1 (000) 000-0000">
+      </div>
+      <div class="form-group">
+        <label class="f-label">Service Required</label>
+        <select class="f-select" id="service">
+          <option value="">Select a service...</option>
+          <option>Custom Cabinetry</option>
+          <option>Bespoke Furniture</option>
+          <option>Hardwood Flooring</option>
+          <option>Decking & Outdoor</option>
+          <option>Structural Framing</option>
+          <option>Doors & Stairs</option>
+          <option>Restoration & Repair</option>
+          <option>Full Home Fitout</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="f-label">Timber Preference</label>
+        <select class="f-select" id="timber">
+          <option value="">Preferred timber species...</option>
+          <option>Oak (White or Red)</option>
+          <option>Walnut</option>
+          <option>Maple</option>
+          <option>Pine</option>
+          <option>Cedar</option>
+          <option>Blackwood</option>
+          <option>Not Sure — Need Advice</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="f-label">Project Description</label>
+        <textarea class="f-textarea" id="message" placeholder="Describe your project — dimensions, style, timber, budget and timeline if known..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()"><span>Send Quote Request →</span></button>
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand">NEMCO</span>
+      <span class="sub">Carpenter Inc</span>
+      <p>Master carpenters and joiners serving residential and commercial clients since 1998. Handcrafted woodwork built to outlast generations.</p>
+      <div class="footer-socials">
+        <a class="fsoc">fb</a>
+        <a class="fsoc">ig</a>
+        <a class="fsoc">pi</a>
+        <a class="fsoc">yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a onclick="showPage('home')">Home</a></li>
+        <li><a onclick="showPage('services')">Services</a></li>
+        <li><a onclick="showPage('gallery')">Our Work</a></li>
+        <li><a onclick="showPage('about')">About Us</a></li>
+        <li><a onclick="showPage('reviews')">Reviews</a></li>
+        <li><a onclick="showPage('contact')">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a>Custom Cabinetry</a></li>
+        <li><a>Bespoke Furniture</a></li>
+        <li><a>Hardwood Flooring</a></li>
+        <li><a>Decking & Outdoor</a></li>
+        <li><a>Structural Framing</a></li>
+        <li><a>Doors & Stairs</a></li>
+        <li><a>Restoration</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a>88 Timber Lane</a></li>
+        <li><a>Burlington, VT 05401</a></li>
+        <li><a>+1 (802) 555-0247</a></li>
+        <li><a>hello@nemcocarpenter.com</a></li>
+        <li><a>Mon–Fri: 7am – 5pm</a></li>
+        <li><a>Saturday: 8am – 1pm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Nemco Carpenter Inc. All rights reserved.</span>
+    <span class="footer-copy">Quality · Craft · Character</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLB()">
+  <span class="lb-close">×</span>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-nav" onclick="event.stopPropagation()">
+    <button class="lb-btn" onclick="lbPrev()">← Prev</button>
+    <button class="lb-btn" onclick="lbNext()">Next →</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Quote request sent! We'll be in touch within 24 hours.</div>
+
+<script>
+  // Page navigation
+  function showPage(id) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Mobile nav toggle
+  function toggleNav() {
+    const ul = document.querySelector('.nav-links');
+    if (ul.style.display === 'flex') {
+      ul.style.display = 'none';
+    } else {
+      ul.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:rgba(44,26,14,0.98);padding:20px 30px;gap:16px;border-bottom:1px solid rgba(212,168,83,0.2);z-index:999;';
+    }
+  }
+
+  // Gallery filter
+  function filterGallery(btn, cat) {
+    document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.g-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  // Lightbox
+  let lbImages = [];
+  let lbIndex = 0;
+
+  function openLB(el) {
+    // Collect all visible images
+    lbImages = [...document.querySelectorAll('.g-item:not([style*="none"]) img, .wood-cell img')];
+    const imgEl = el.querySelector('img');
+    lbIndex = lbImages.indexOf(imgEl);
+    if (lbIndex === -1) { lbImages = [imgEl]; lbIndex = 0; }
+    document.getElementById('lbImg').src = imgEl.src.replace(/w=\d+/, 'w=1200');
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLB() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function lbNext() {
+    lbIndex = (lbIndex + 1) % lbImages.length;
+    document.getElementById('lbImg').src = lbImages[lbIndex].src.replace(/w=\d+/, 'w=1200');
+  }
+
+  function lbPrev() {
+    lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+    document.getElementById('lbImg').src = lbImages[lbIndex].src.replace(/w=\d+/, 'w=1200');
+  }
+
+  // Keyboard nav for lightbox
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) {
+      if (e.key === 'ArrowRight') lbNext();
+      if (e.key === 'ArrowLeft') lbPrev();
+      if (e.key === 'Escape') closeLB();
+    }
+  });
+
+  // Form submit
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!fname || !email) { alert('Please enter your name and email.'); return; }
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4500);
+    ['fname','lname','email','phone','service','timber','message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  }
+</script>
+</body>
+</html>
